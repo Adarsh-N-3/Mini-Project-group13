@@ -1,3 +1,4 @@
+// MedicineCard component - displays medicine details
 import React from "react";
 
 const MedicineCard = ({ name, dosage, frequency, started }) => {

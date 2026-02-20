@@ -13,8 +13,8 @@ const MedicineCard = ({
         {name}
       </h2>
 
-      <p className="text-gray-700 text-sm">
-        <span className="font-medium">Dosage:</span> {dosage}
+      <p className="text-gray-800 text-base font-medium">
+        <span className="font-bold text-indigo-700">Dosage:</span> <span className="italic">{dosage}</span>
       </p>
 
       <p className="text-gray-700 text-sm">

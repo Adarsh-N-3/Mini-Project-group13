@@ -9,7 +9,7 @@ const MedicineCard = ({
 }) => {
   return (
     <div className="w-full max-w-5xl mx-auto bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-2xl p-5">
-      <h2 className="text-xl font-bold text-blue-800 mb-2">
+      <h2 className="text-xl font-bold text-indigo-800 tracking-tight mb-2">
         {name}
       </h2>
 

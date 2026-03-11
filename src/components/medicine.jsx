@@ -15,7 +15,7 @@ const MedicineCard = ({ name, dosage, frequency, started }) => {
         <span className="font-medium">Frequency:</span> {frequency}
       </p>
 
-      <p className="text-gray-700 text-sm">
+      <p className="text-gray-700 text-lg">
         <span className="font-medium">Started:</span> {started}
       </p>
     </div>

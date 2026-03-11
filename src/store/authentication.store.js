@@ -2,9 +2,10 @@ import { create } from 'zustand'
 
 const useAuthenticate = create((set) => ({
   isAuthenticated: false,
-
-  authenticate: () => 
-    set({ isAuthenticated: true }),
+  adminUsername: ["@adarshhtaman:matrix.org"],
+  logedInUser: null,
+  authenticate: (user) => 
+    set({ isAuthenticated: true, logedInUser: user }),
 
   unAuthenticate: () => 
     set({ isAuthenticated: false }),

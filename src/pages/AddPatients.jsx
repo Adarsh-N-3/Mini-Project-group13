@@ -15,7 +15,9 @@ const DEFAULT_ALLERGIES = [
 ];
 
 export default function AddPatient() {
+
   const yDoc = useYdoc((state)=>state.yDoc)
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [bed, setBed] = useState("");
@@ -44,6 +46,7 @@ export default function AddPatient() {
   const addPatient = () => {
 
     const patients= yDoc.getMap("patients")
+    
     alert("clicked")
     const patientInfo =  new Y.Map()
     const allergie = new Y.Array()

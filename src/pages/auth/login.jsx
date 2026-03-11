@@ -19,7 +19,7 @@ const authenticate = useAuthenticate((state)=>state.authenticate)
 
     if (errorMessage === null) {
     
-      await authenticate();
+      await authenticate(username);
       {
         console.log("authenticated")
       }

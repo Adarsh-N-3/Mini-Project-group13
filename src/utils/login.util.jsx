@@ -7,10 +7,9 @@ import { useYdoc } from "../store/YjsDoc";
 
 export const loginToMatrix = async (username,password) => {
     const MATRIX_URL = "https://matrix.org";
-    const ROOM_ALIAS = "#gen-ward-1:matrix.org";
-     //local addr. of the matrix room
+    const ROOM_ALIAS = "#gen-ward-2:matrix.org";
     const yDoc = useYdoc.getState().yDoc
-    
+     
     let matrixProvider= null;
   try {
     const tempClient = createClient({ baseUrl: MATRIX_URL });

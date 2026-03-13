@@ -17,8 +17,8 @@ const MedicineCard = ({
         <span className="font-bold text-indigo-700">Dosage:</span> <span className="italic">{dosage}</span>
       </p>
 
-      <p className="text-gray-700 text-sm">
-        <span className="font-medium">Frequency:</span> {frequency}
+      <p className="text-gray-700 text-sm mt-1">
+        <span className="font-semibold text-gray-800">Frequency:</span> <span className="text-gray-600">{frequency}</span>
       </p>
 
       <p className="text-gray-700 text-lg">

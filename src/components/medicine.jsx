@@ -21,8 +21,8 @@ const MedicineCard = ({
         <span className="font-semibold text-gray-800">Frequency:</span> <span className="text-gray-600">{frequency}</span>
       </p>
 
-      <p className="text-gray-700 text-lg">
-        <span className="font-medium">Started:</span> {started}
+      <p className="text-gray-700 text-base mt-2">
+        <span className="font-semibold text-gray-800">Started:</span> <span className="text-gray-600">{started}</span>
       </p>
     </div>
   );

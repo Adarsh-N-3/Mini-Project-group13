@@ -1,12 +1,13 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 
-import MainLayout from "../layouts/MainLayout"
-import Todo from "../pages/Todo"
-import Patients from "../pages/patients"
-import { Login } from "../pages/auth/login"
-import ProtectedRoute from "../layouts/ProtectedRouteLayout"
-import AddPatient from "../pages/AddPatients"
-import PatientDetails from "../pages/patientDetails"
+import MainLayout from "../layouts/MainLayout";
+import Todo from "../pages/Todo";
+import Patients from "../pages/patients";
+import { Login } from "../pages/auth/login";
+import ProtectedRoute from "../layouts/ProtectedRouteLayout";
+import AddPatient from "../pages/AddPatients";
+import PatientDetails from "../pages/patientDetails";
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -16,19 +17,15 @@ const AppRoutes = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Todo />} />
           <Route path="/patients" element={<Patients />} />
-          <Route path="/addPatients" element={<AddPatient/>}/>
-          <Route path="/patientDetails/:id" element={<PatientDetails/>}/>
+          <Route path="/addPatients" element={<AddPatient />} />
+          <Route path="/patientDetails/:id" element={<PatientDetails />} />
         </Route>
       </Route>
-
     </Routes>
   );
-}
+};
 
-export default AppRoutes
-
-
-
+export default AppRoutes;
 
 // {
 //   "patients": {

@@ -21,5 +21,5 @@ const MedicineCard = ({ name, dosage, frequency, started }) => {
     </div>
   );
 };
-
+// medicine components is ready
 export default MedicineCard;

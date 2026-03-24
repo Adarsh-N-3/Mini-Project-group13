@@ -20,6 +20,5 @@ const MedicineCard = ({ name, dosage, frequency, started }) => {
       </p>
     </div>
   );
-};
-
+}; //med compound success
 export default MedicineCard;

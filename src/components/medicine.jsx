@@ -26,6 +26,5 @@ const MedicineCard = ({
       </p>
     </div>
   );
-};
-
+}; //med compound success
 export default MedicineCard;

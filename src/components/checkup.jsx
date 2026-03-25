@@ -1,22 +1,23 @@
 import React from "react";
+import { Heart } from "lucide-react";
 
 const CheckupCard = ({ date, temperature, bloodPressure, heartRate, notes }) => {
   return (
     <div className="w-full max-w-6xl mx-auto bg-gray-50 border border-gray-300 rounded-lg px-6 py-5 shadow-sm">
-      
+
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-900">
           {date}
         </h2>
 
-        {/* Heart Icon */}
-        <span className="text-green-500 text-xl">💓</span>
+        {/* Lucide Heart Icon filling with green */}
+        <Heart className="text-green-500 w-6 h-6" fill="currentColor" strokeWidth={0} />
       </div>
 
       {/* Vitals */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-4">
-        
+
         <div>
           <p className="text-sm text-gray-500">Temperature</p>
           <p className="text-base font-medium text-gray-800">

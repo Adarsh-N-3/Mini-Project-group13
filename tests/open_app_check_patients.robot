@@ -25,8 +25,6 @@ Open App And Check Patients Page
     ...    ELSE
     ...    Log    App loaded — no login required
 
-    Capture Page Screenshot    screenshot_{index}.png
-
     [Teardown]    Run Keywords
-    ...    Capture Page Screenshot    teardown_screenshot_{index}.png
+    ...    Capture Page Screenshot    final_screenshot_{index}.png
     ...    AND    Close Browser

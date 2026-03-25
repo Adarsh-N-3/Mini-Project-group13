@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.12.9 on win32)" generated="2026-03-25T14:52:49.556223" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.2 (Python 3.12.9 on win32)" generated="2026-03-25T23:06:28.161788" rpa="false" schemaversion="5">
 <suite id="s1" name="Open App Check Patients" source="D:\code\Mini-Project-group13\tests\open_app_check_patients.robot">
 <test id="s1-t1" name="Open App And Check Patients Page" line="9">
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2026-03-25T14:52:50.235616" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F3C8144B60&gt;</msg>
+<msg time="2026-03-25T23:06:29.175537" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B34C864E60&gt;</msg>
 <var>${options}</var>
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2026-03-25T14:52:50.223249" elapsed="0.012367"/>
+<status status="PASS" start="2026-03-25T23:06:29.157695" elapsed="0.018861"/>
 </kw>
 <kw name="Call Method" owner="BuiltIn">
 <arg>${options}</arg>
 <arg>add_argument</arg>
 <arg>--headless</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" start="2026-03-25T14:52:50.235616" elapsed="0.004429"/>
+<status status="PASS" start="2026-03-25T23:06:29.176556" elapsed="0.004574"/>
 </kw>
 <kw name="Call Method" owner="BuiltIn">
 <arg>${options}</arg>
 <arg>add_argument</arg>
 <arg>--no-sandbox</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" start="2026-03-25T14:52:50.240045" elapsed="0.000000"/>
+<status status="PASS" start="2026-03-25T23:06:29.183095" elapsed="0.002531"/>
 </kw>
 <kw name="Call Method" owner="BuiltIn">
 <arg>${options}</arg>
 <arg>add_argument</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" start="2026-03-25T14:52:50.240045" elapsed="0.000000"/>
+<status status="PASS" start="2026-03-25T23:06:29.185626" elapsed="0.000998"/>
 </kw>
 <kw name="Create Webdriver" owner="SeleniumLibrary">
-<msg time="2026-03-25T14:52:50.274605" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg time="2026-03-25T23:06:29.321487" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
 <arg>Chrome</arg>
 <arg>options=${options}</arg>
 <doc>Creates an instance of Selenium WebDriver.</doc>
-<status status="PASS" start="2026-03-25T14:52:50.240045" elapsed="5.251171"/>
+<status status="PASS" start="2026-03-25T23:06:29.186624" elapsed="17.658506"/>
 </kw>
 <kw name="Set Selenium Implicit Wait" owner="SeleniumLibrary">
 <arg>${WAIT_TIME}</arg>
 <doc>Sets the implicit wait value used by Selenium.</doc>
-<status status="PASS" start="2026-03-25T14:52:55.491216" elapsed="0.003835"/>
+<status status="PASS" start="2026-03-25T23:06:46.846934" elapsed="0.006315"/>
 </kw>
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2026-03-25T14:52:55.495051" level="INFO">Opening url 'http://localhost:5173'</msg>
+<msg time="2026-03-25T23:06:46.854250" level="INFO">Opening url 'http://localhost:5173'</msg>
 <arg>${URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2026-03-25T14:52:55.495051" elapsed="1.247441"/>
+<status status="PASS" start="2026-03-25T23:06:46.854250" elapsed="1.192185"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>tag=body</arg>
 <arg>${WAIT_TIME}</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.744082" elapsed="0.104596"/>
+<status status="PASS" start="2026-03-25T23:06:48.047657" elapsed="0.097574"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Page Should Contain Element" owner="SeleniumLibrary">
-<msg time="2026-03-25T14:52:56.893439" level="INFO">Current page contains element 'xpath=//input[@type='password']'.</msg>
+<msg time="2026-03-25T23:06:48.182680" level="INFO">Current page contains element 'xpath=//input[@type='password']'.</msg>
 <arg>xpath=//input[@type='password']</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.848678" elapsed="0.044761"/>
+<status status="PASS" start="2026-03-25T23:06:48.146288" elapsed="0.036392"/>
 </kw>
-<msg time="2026-03-25T14:52:56.895552" level="INFO">${is_login_page} = True</msg>
+<msg time="2026-03-25T23:06:48.182680" level="INFO">${is_login_page} = True</msg>
 <var>${is_login_page}</var>
 <arg>Page Should Contain Element</arg>
 <arg>xpath=//input[@type='password']</arg>
 <doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.848678" elapsed="0.046874"/>
+<status status="PASS" start="2026-03-25T23:06:48.146288" elapsed="0.036392"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-03-25T14:52:56.895552" level="INFO">App loaded but requires authentication</msg>
+<msg time="2026-03-25T23:06:48.186289" level="INFO">App loaded but requires authentication</msg>
 <arg>App loaded but requires authentication</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.895552" elapsed="0.000000"/>
+<status status="PASS" start="2026-03-25T23:06:48.186289" elapsed="0.000000"/>
 </kw>
 <arg>${is_login_page}</arg>
 <arg>Log</arg>
@@ -83,35 +83,29 @@
 <arg>Log</arg>
 <arg>App loaded — no login required</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.895552" elapsed="0.002770"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2026-03-25T14:52:57.050233" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshot_1.png"&gt;&lt;img src="screenshot_1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>screenshot_{index}.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2026-03-25T14:52:56.898322" elapsed="0.151911"/>
+<status status="PASS" start="2026-03-25T23:06:48.182680" elapsed="0.003609"/>
 </kw>
 <kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2026-03-25T14:52:57.137653" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="teardown_screenshot_1.png"&gt;&lt;img src="teardown_screenshot_1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>teardown_screenshot_{index}.png</arg>
+<msg time="2026-03-25T23:06:48.346637" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="final_screenshot_1.png"&gt;&lt;img src="final_screenshot_1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>final_screenshot_{index}.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2026-03-25T14:52:57.050233" elapsed="0.087420"/>
+<status status="PASS" start="2026-03-25T23:06:48.188313" elapsed="0.158324"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-03-25T14:52:57.137653" elapsed="2.449417"/>
+<status status="PASS" start="2026-03-25T23:06:48.346637" elapsed="2.285338"/>
 </kw>
 <arg>Capture Page Screenshot</arg>
-<arg>teardown_screenshot_{index}.png</arg>
+<arg>final_screenshot_{index}.png</arg>
 <arg>AND</arg>
 <arg>Close Browser</arg>
 <doc>Executes all the given keywords in a sequence.</doc>
-<status status="PASS" start="2026-03-25T14:52:57.050233" elapsed="2.536837"/>
+<status status="PASS" start="2026-03-25T23:06:48.188313" elapsed="2.443662"/>
 </kw>
-<status status="PASS" start="2026-03-25T14:52:50.223249" elapsed="9.363821"/>
+<status status="PASS" start="2026-03-25T23:06:29.157695" elapsed="21.475281"/>
 </test>
-<status status="PASS" start="2026-03-25T14:52:49.568230" elapsed="10.022197"/>
+<status status="PASS" start="2026-03-25T23:06:28.172594" elapsed="22.461378"/>
 </suite>
 <statistics>
 <total>

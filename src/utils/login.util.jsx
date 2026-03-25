@@ -1,16 +1,14 @@
-
 import { createClient } from "matrix-js-sdk";
 import { MatrixProvider } from "@ixo/matrix-crdt";
 import * as Y from "yjs";
 import { useYdoc } from "../store/YjsDoc";
 
+export const loginToMatrix = async (username, password) => {
+  const MATRIX_URL = "https://matrix.org";
+  const ROOM_ALIAS = "#gen-ward-4:matrix.org";
+  const yDoc = useYdoc.getState().yDoc;
 
-export const loginToMatrix = async (username,password) => {
-    const MATRIX_URL = "https://matrix.org";
-    const ROOM_ALIAS = "#gen-ward-2:matrix.org";
-    const yDoc = useYdoc.getState().yDoc
-     
-    let matrixProvider= null;
+  let matrixProvider = null;
   try {
     const tempClient = createClient({ baseUrl: MATRIX_URL });
     const loginResponse = await tempClient.loginRequest({
@@ -38,7 +36,7 @@ export const loginToMatrix = async (username,password) => {
       return "Access Denied: You are not assigned to Gen Ward 1.";
     }
 
-    const httpApi = (matrixClient )._http || (matrixClient).http;
+    const httpApi = matrixClient._http || matrixClient.http;
     if (httpApi && httpApi.authedRequest) {
       const originalAuthedRequest = httpApi.authedRequest;
       httpApi.authedRequest = function (...args) {
@@ -52,7 +50,6 @@ export const loginToMatrix = async (username,password) => {
         return originalAuthedRequest.apply(this, args);
       };
     }
-
 
     matrixProvider = new MatrixProvider(yDoc, matrixClient, {
       type: "id",

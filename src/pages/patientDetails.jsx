@@ -121,10 +121,29 @@ export default function PatientDetails() {
       medicineForm.scheduleTimes.forEach((time, index) => {
         const taskData = new Y.Map();
         const taskId = `task_${userId}_${medId}_${baseTimestamp}_${index}`;
+
+        // --- NEW TIME LOGIC ---
+        // Create a date object for TODAY
+        const scheduledDate = new Date();
+        // Extract the 24-hour time string we already converted earlier
+        const time24Str = schedule24Hour[index];
+        const [hours, minutes] = time24Str.split(":");
+
+        // Set the specific hours and minutes for this task
+        scheduledDate.setHours(
+          parseInt(hours, 10),
+          parseInt(minutes, 10),
+          0,
+          0,
+        );
+        const actualScheduledTimestamp = scheduledDate.getTime();
+        // ----------------------
+
         taskData.set("id", taskId);
         taskData.set("sourceType", "medicine");
         taskData.set("sourceId", medId);
-        taskData.set("scheduledFor", baseTimestamp);
+        // USE THE NEW TIMESTAMP HERE
+        taskData.set("scheduledFor", actualScheduledTimestamp);
         taskData.set("status", "pending");
         taskData.set("createdBy", logedInUser);
         tasksToAdd.push(taskData);
@@ -137,7 +156,8 @@ export default function PatientDetails() {
           sourceId: medId,
           sourceName: medicineForm.name,
           seriousness: medicineForm.seriousness,
-          scheduledFor: baseTimestamp,
+          // AND USE IT HERE
+          scheduledFor: actualScheduledTimestamp,
           status: "pending",
           createdBy: logedInUser,
           completedBy: null,
@@ -146,7 +166,6 @@ export default function PatientDetails() {
           bedNo: patientDetails?.bedNo,
         });
       });
-
       medTasks.push(tasksToAdd);
       setTasks((prevTasks) => [...prevTasks, ...newTasksForState]);
 
@@ -210,10 +229,26 @@ export default function PatientDetails() {
       checkupForm.scheduleTimes.forEach((time, index) => {
         const taskData = new Y.Map();
         const taskId = `task_${userId}_${checkupId}_${baseTimestamp}_${index}`;
+
+        // --- NEW TIME LOGIC ---
+        const scheduledDate = new Date();
+        const time24Str = schedule24Hour[index];
+        const [hours, minutes] = time24Str.split(":");
+
+        scheduledDate.setHours(
+          parseInt(hours, 10),
+          parseInt(minutes, 10),
+          0,
+          0,
+        );
+        const actualScheduledTimestamp = scheduledDate.getTime();
+        // ----------------------
+
         taskData.set("id", taskId);
-        taskData.set("sourceType", "checkup"); // Explicitly set as checkup
+        taskData.set("sourceType", "checkup");
         taskData.set("sourceId", checkupId);
-        taskData.set("scheduledFor", baseTimestamp);
+        // USE THE NEW TIMESTAMP HERE
+        taskData.set("scheduledFor", actualScheduledTimestamp);
         taskData.set("status", "pending");
         taskData.set("createdBy", logedInUser);
         tasksToAdd.push(taskData);
@@ -226,7 +261,8 @@ export default function PatientDetails() {
           sourceId: checkupId,
           sourceName: checkupForm.name,
           seriousness: checkupForm.seriousness,
-          scheduledFor: baseTimestamp,
+          // AND USE IT HERE
+          scheduledFor: actualScheduledTimestamp,
           status: "pending",
           createdBy: logedInUser,
           completedBy: null,
@@ -235,7 +271,6 @@ export default function PatientDetails() {
           bedNo: patientDetails?.bedNo,
         });
       });
-
       medTasks.push(tasksToAdd);
       setTasks((prevTasks) => [...prevTasks, ...newTasksForState]);
 
@@ -846,11 +881,9 @@ export default function PatientDetails() {
       {/* Checkup Modal */}
       {showCheckupModal && (
         <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 max-h-96 overflow-y-auto border-t-4 border-blue-600">
+          <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-semibold text-blue-900">
-                Add Checkup
-              </h2>
+              <h2 className="text-2xl font-semibold">Add Checkup</h2>
               <button
                 onClick={() => setShowCheckupModal(false)}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -866,7 +899,7 @@ export default function PatientDetails() {
                 <input
                   type="text"
                   placeholder="e.g., Blood Pressure, Vitals"
-                  className="w-full bg-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
                   value={checkupForm.name}
                   onChange={(e) =>
                     setCheckupForm({ ...checkupForm, name: e.target.value })
@@ -900,7 +933,7 @@ export default function PatientDetails() {
                     <button
                       key={freq}
                       onClick={() => handleFrequencyChange(freq, true)}
-                      className={`flex-1 py-2 rounded-lg font-medium transition-colors ${checkupForm.frequency === freq ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
+                      className={`flex-1 py-2 rounded-lg font-medium transition-colors ${checkupForm.frequency === freq ? "bg-black text-white" : "bg-gray-100 text-gray-700"}`}
                     >
                       {freq}
                     </button>
@@ -1003,7 +1036,7 @@ export default function PatientDetails() {
                 </button>
                 <button
                   onClick={addCheckup}
-                  className="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+                  className="flex-1 bg-black text-white py-3 rounded-lg font-semibold"
                 >
                   Save Checkup
                 </button>

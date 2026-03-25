@@ -4,6 +4,9 @@ import { useYdoc } from "../store/YjsDoc";
 import { useParams } from "react-router-dom";
 import * as Y from "yjs";
 import { useAuthenticate } from "../store/authentication.store";
+import HeaderNavTab from "../components/HeaderNavTab";
+import GenericButton from "../components/GenericButton";
+import PatientInfoCard from "../components/PatientInfoCard";
 
 export default function PatientDetails() {
   const [patientDetails, setPatientDetails] = useState();
@@ -434,63 +437,26 @@ export default function PatientDetails() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col h-screen overflow-hidden">
-      <div className="mx-4 bg-blue-50 rounded-xl p-4 mt-4 shrink-0">
-        <h2 className="text-lg font-semibold">{patientDetails?.name || ""}</h2>
-        <div className="text-sm text-gray-600 mt-1 flex gap-4 flex-wrap">
-          <span>Bed: {patientDetails?.bedNo || ""}</span>
-          <span>Age: {patientDetails?.age || ""}</span>
-          <span>Ward: {patientDetails?.ward || ""}</span>
-        </div>
-      </div>
+      <PatientInfoCard patientDetails={patientDetails} />
 
-      <div className="mx-4 mt-4 bg-gray-100 rounded-full p-1 flex justify-between text-sm font-medium shrink-0 overflow-x-auto">
-        <button
-          onClick={() => setActiveTab("medicines")}
-          className={`px-4 py-1 rounded-full whitespace-nowrap transition-colors ${activeTab === "medicines" ? "bg-white" : "hover:bg-gray-200"}`}
-        >
-          Medicines
-        </button>
-        <button
-          onClick={() => setActiveTab("checkups")}
-          className={`px-4 py-1 whitespace-nowrap transition-colors rounded-full ${activeTab === "checkups" ? "bg-white" : "hover:bg-gray-200"}`}
-        >
-          Checkups
-        </button>
-        <button
-          onClick={() => setActiveTab("history")}
-          className={`px-4 py-1 whitespace-nowrap transition-colors rounded-full ${activeTab === "history" ? "bg-white" : "hover:bg-gray-200"}`}
-        >
-          History
-        </button>
-        <button
-          onClick={() => setActiveTab("todos")}
-          className={`px-4 py-1 flex gap-1 whitespace-nowrap transition-colors rounded-full ${activeTab === "todos" ? "bg-white" : "hover:bg-gray-200"}`}
-        >
-          Todo{" "}
-          {pendingTasksCount > 0 && (
-            <span className="bg-red-500 text-white rounded-full px-2 text-xs">
-              {pendingTasksCount}
-            </span>
-          )}
-        </button>
-      </div>
+      <HeaderNavTab
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        pendingTasksCount={pendingTasksCount}
+      />
 
       {activeTab === "medicines" && (
-        <button
-          onClick={() => setShowMedicineModal(true)}
-          className="mx-4 mt-4 bg-black text-white py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-800 shrink-0"
-        >
-          <Pill size={18} /> Add Medicine
-        </button>
+        <GenericButton
+          setShowModal={setShowMedicineModal}
+          buttonType={"Medicine"}
+        />
       )}
 
       {activeTab === "checkups" && (
-        <button
-          onClick={() => setShowCheckupModal(true)}
-          className="mx-4 mt-4 bg-black text-white py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-600 shrink-0"
-        >
-          <Stethoscope size={18} /> Add Checkup
-        </button>
+        <GenericButton
+          setShowModal={setShowCheckupModal}
+          buttonType={"Checkup"}
+        />
       )}
 
       <div className="mx-4 mt-4 flex-1 overflow-y-auto min-h-0">

@@ -715,6 +715,7 @@ export default function PatientDetails() {
                 </label>
                 <input
                   type="text"
+                  placeholder="Medicine name"
                   className="w-full bg-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
                   value={medicineForm.name}
                   onChange={(e) =>
@@ -728,6 +729,7 @@ export default function PatientDetails() {
                 </label>
                 <input
                   type="text"
+                  placeholder="Dosage"
                   className="w-full bg-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
                   value={medicineForm.dosage}
                   onChange={(e) =>

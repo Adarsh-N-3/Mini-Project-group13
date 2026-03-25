@@ -148,7 +148,7 @@ const authenticate = useAuthenticate((state)=>state.authenticate)
               transition: "background 0.2s",
             }}
           >
-            {loading ? "Authenticating..." : "Enter Ward"}
+            {loading ? "Authenticating..." : "Login"}
           </button>
         </form>
       </div>

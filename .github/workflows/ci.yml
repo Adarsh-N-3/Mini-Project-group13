@@ -2,9 +2,9 @@ name: CI (Lint + Build)
 
 on:
   push:
-    branches: [ main, robert ]
+    branches: [ main, robert,rahul-58 ]
   pull_request:
-    branches: [ main, robert ]
+    branches: [ main, robert,rahul-58 ]
 
 jobs:
   check:

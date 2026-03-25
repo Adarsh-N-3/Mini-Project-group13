@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { loginToMatrix } from "../../utils/login.util";
- import { useAuthenticate } from "../../store/authentication.store";
+import { useAuthenticate } from "../../store/authentication.store";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export function Login() {
-  const navigaet=useNavigate()
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-const authenticate = useAuthenticate((state)=>state.authenticate)
+  const authenticate = useAuthenticate((state) => state.authenticate);
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -18,12 +18,11 @@ const authenticate = useAuthenticate((state)=>state.authenticate)
     const errorMessage = await loginToMatrix(username, password);
 
     if (errorMessage === null) {
-    
       await authenticate(username);
       {
-        console.log("authenticated")
+        console.log("authenticated");
       }
-      navigaet("/")
+      navigate("/");
     } else {
       setError(errorMessage);
       setLoading(false);

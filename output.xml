@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.10.12 on linux)" generated="2026-03-22T00:13:07.857597" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Patients" source="/home/robert/distributed-sys/nurse_taskManagement/tests/test_patients.robot">
+<test id="s1-t1" name="Open App And Check Patients Page" line="9">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-03-22T00:13:07.999884" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7f6052abbbb0&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-03-22T00:13:07.998766" elapsed="0.001167"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.000183" elapsed="0.000468"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.000858" elapsed="0.000286"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.001296" elapsed="0.000334"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-03-22T00:13:08.003472" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>Chrome</arg>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.001786" elapsed="0.271124"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" owner="SeleniumLibrary">
+<arg>${WAIT_TIME}</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.273272" elapsed="0.001047"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-03-22T00:13:08.274647" level="INFO">Opening url 'http://localhost:5173'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.274496" elapsed="0.374769"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//*</arg>
+<arg>${WAIT_TIME}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.649537" elapsed="0.023167"/>
+</kw>
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2026-03-22T00:13:08.684142" level="INFO">Current page contains element 'xpath=//input[@type='password']'.</msg>
+<arg>xpath=//input[@type='password']</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.673901" elapsed="0.010362"/>
+</kw>
+<msg time="2026-03-22T00:13:08.684415" level="INFO">${is_login_page} = True</msg>
+<var>${is_login_page}</var>
+<arg>Page Should Contain Element</arg>
+<arg>xpath=//input[@type='password']</arg>
+<doc>Runs the specified keyword and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.673185" elapsed="0.011254"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-03-22T00:13:08.685267" level="INFO">App loaded but requires authentication</msg>
+<arg>App loaded but requires authentication</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.685072" elapsed="0.000240"/>
+</kw>
+<arg>${is_login_page}</arg>
+<arg>Log</arg>
+<arg>App loaded but requires authentication</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.684669" elapsed="0.000696"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-03-22T00:13:08.685483" elapsed="0.058902"/>
+</kw>
+<status status="PASS" start="2026-03-22T00:13:07.997704" elapsed="0.746987"/>
+</test>
+<status status="PASS" start="2026-03-22T00:13:07.858374" elapsed="0.886790"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Patients" id="s1" pass="1" fail="0" skip="0">Test Patients</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

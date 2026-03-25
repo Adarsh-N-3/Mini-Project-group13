@@ -1,0 +1,30 @@
+name: CI (Lint + Build)
+
+on:
+  push:
+    branches: [ main, robert ]
+  pull_request:
+    branches: [ main, robert ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Lint (check code errors)
+      run: npm run lint
+
+    - name: Build Project (check build errors)
+      run: npm run build

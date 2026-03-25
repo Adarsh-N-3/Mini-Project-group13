@@ -6,54 +6,67 @@ import { useAuthenticate } from '../store/authentication.store.js'
 import { Plus, AlertCircle } from 'lucide-react'
 
 function Patients() {
-  const [patientArray, setPatientArray] = useState([])
-  const [successMessage, setSuccessMessage] = useState("")
-  const admin = useAuthenticate((state) => state.adminUsername)
-  const logedInUser = useAuthenticate((state) => state.logedInUser)
-  const yDoc = useYdoc((state) => state.yDoc)
-  const PatientArray = yDoc.getMap("patients")
-  const navigate = useNavigate()
   const location = useLocation()
 
-  useEffect(() => {
-    // Show success message if coming from add patient page
-    if (location.state?.message) {
-      setSuccessMessage(location.state.message)
-      // Auto-dismiss message after 3 seconds
-      const timer = setTimeout(() => {
-        setSuccessMessage("")
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [location.state])
+  // ✅ Initialize state from location (FIXED)
+  const initialMessage = location.state?.message || ""
+  const [successMessage, setSuccessMessage] = useState(initialMessage)
 
-  useEffect(() => {
-    function syncui() {
-      setPatientArray(PatientArray.toJSON())
-    }
-    syncui()
-    
-    PatientArray.observe(() => {
-      syncui()
-    })
-  }, [PatientArray])
+  const [patientArray, setPatientArray] = useState({})
+
+  const admin = useAuthenticate((state) => state.adminUsername)
+  const logedInUser = useAuthenticate((state) => state.logedInUser)
+
+  const yDoc = useYdoc((state) => state.yDoc)
+  const PatientArray = yDoc.getMap("patients")
+
+  const navigate = useNavigate()
 
   const isAdmin = admin && admin.includes(logedInUser)
 
+  // ✅ Auto-dismiss message (SAFE)
+  useEffect(() => {
+    if (!successMessage) return
+
+    const timer = setTimeout(() => {
+      setSuccessMessage("")
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [successMessage])
+
+  // ✅ Sync Yjs data with cleanup (VERY IMPORTANT ⭐)
+  useEffect(() => {
+    const syncUI = () => {
+      setPatientArray(PatientArray.toJSON())
+    }
+
+    syncUI()
+
+    const observer = () => syncUI()
+    PatientArray.observe(observer)
+
+    return () => {
+      PatientArray.unobserve(observer)
+    }
+  }, [PatientArray])
+
   return (
     <div className='flex flex-1 flex-col pt-6 px-4 gap-3'>
-      {/* Success Message */}
+
+      {/* ✅ Success Message */}
       {successMessage && (
         <div className="mx-auto w-full max-w-md bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-green-700 text-sm animate-pulse">
           {successMessage}
         </div>
       )}
 
-      {/* Empty State */}
-      {Object.entries(patientArray || {}).length === 0 ? (
+      {/* ✅ Empty State */}
+      {Object.keys(patientArray).length === 0 ? (
         <div className="flex flex-1 items-center justify-center flex-col gap-4">
           <AlertCircle size={48} className="text-gray-300" />
           <p className="text-gray-500 text-center">No patients found</p>
+
           {isAdmin && (
             <button
               onClick={() => navigate("/addPatients")}
@@ -65,8 +78,10 @@ function Patients() {
           )}
         </div>
       ) : (
+
+        /* ✅ Patient List */
         <div className="flex flex-col gap-3 pb-6">
-          {Object.entries(patientArray || {}).map(([id, patient]) => (
+          {Object.entries(patientArray).map(([id, patient]) => (
             <Patient 
               key={id} 
               id={id} 
@@ -80,14 +95,14 @@ function Patients() {
         </div>
       )}
 
-      {/* Add Patient Button - Fixed Position for Admin */}
-      {isAdmin && Object.entries(patientArray || {}).length > 0 && (
+      {/* ✅ Floating Add Button */}
+      {isAdmin && Object.keys(patientArray).length > 0 && (
         <button
           onClick={() => navigate("/addPatients")}
           className='fixed bottom-24 right-6 w-16 h-16 flex justify-center items-center rounded-full bg-black text-white hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl z-40'
           title="Add new patient"
         >
-          <Plus size={28} className="text-white" />
+          <Plus size={28} />
         </button>
       )}
     </div>
@@ -95,4 +110,3 @@ function Patients() {
 }
 
 export default Patients
-

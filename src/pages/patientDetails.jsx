@@ -6,6 +6,7 @@ import * as Y from "yjs";
 import { useAuthenticate } from "../store/authentication.store";
 import HeaderNavTab from "../components/HeaderNavTab";
 import GenericButton from "../components/GenericButton";
+import PatientInfoCard from "../components/PatientInfoCard";
 
 export default function PatientDetails() {
   const [patientDetails, setPatientDetails] = useState();
@@ -436,14 +437,7 @@ export default function PatientDetails() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col h-screen overflow-hidden">
-      <div className="mx-4 bg-blue-50 rounded-xl p-4 mt-4 shrink-0">
-        <h2 className="text-lg font-semibold">{patientDetails?.name || ""}</h2>
-        <div className="text-sm text-gray-600 mt-1 flex gap-4 flex-wrap">
-          <span>Bed: {patientDetails?.bedNo || ""}</span>
-          <span>Age: {patientDetails?.age || ""}</span>
-          <span>Ward: {patientDetails?.ward || ""}</span>
-        </div>
-      </div>
+      <PatientInfoCard patientDetails={patientDetails} />
 
       <HeaderNavTab
         activeTab={activeTab}
